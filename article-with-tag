@@ -1,0 +1,11 @@
+{% assign tag = 'your-tag' %}
+{% assign articles_with_tag = blog.articles %}
+
+<h2>Articles tagged with "{{ tag }}"</h2>
+<ul>
+  {% for article in articles_with_tag %}
+    {% if article.tags contains tag %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>

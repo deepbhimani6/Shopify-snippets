@@ -1,0 +1,128 @@
+{% comment %} Gallery Assets {% endcomment %}
+<link rel="preload" href="{{ 'team-card.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+{% comment %} Gallery Template {% endcomment %}
+  <section class="team-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h3 class="leading-none font-semibold uppercase mb-0">Our Staff</h3>
+      </div>
+      
+       <div class="team-card-grid">
+         {% for block in section.blocks %}
+           <div class="team-card">
+              <div class="team-img">
+                <img src="{{ block.settings.image | img_url }}" alt="footer logo" class="img-cover">
+              </div>
+              <div class="team-content">
+                 <h4>{{ block.settings.title }}</h4>
+                <div class="media-paltfrom">
+                  {% assign social_platform = block.settings.social_platform %}
+                  {% assign social_url = block.settings.social_url %}
+                  
+                  <a href="{{ social_url }}" class="flex items-center">
+                    
+                    {% if block.settings.name %}
+                      <span>{{ block.settings.name }}</span>
+                    {% endif %}
+                      {% case social_platform %}
+                          {% when 'youtube' %}
+                            <div class="social-profile-img">
+                             <img src="{{ 'youtube-06.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% when 'linkedin' %}
+                            <div class="social-profile-img">
+                             <img src="{{ 'linkedin-02.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% when 'tiktok' %}
+                             <div class="social-profile-img">
+                              <img src="{{ 'tik-03.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% when 'twitter' %}
+                            <div class="social-profile-img">
+                              <img src="{{ 'twit-04.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% when 'instagram' %}
+                            <div class="social-profile-img">
+                              <img src="{{ 'insta-01.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% when 'facebook' %}
+                            <div class="social-profile-img">
+                              <img src="{{ 'facebook-05.svg' | asset_url }}" alt="footer logo" class="w-full h-full block">  
+                            </div>
+                          {% else %}
+                      {% endcase %}
+                  </a>
+                  
+                </div>
+                <div class="richtext">
+                  {{ block.settings.description }}
+                </div>
+              </div>
+          </div>
+        {% endfor %}
+       </div>
+    </div>
+  </section>
+{% schema %}
+{
+  "name": "Team Card",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "title",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "select",
+          "id": "social_platform",
+          "label": "Social Platform",
+          "default": "facebook",
+          "options": [
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "twitter", "label": "Twitter" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "youtube", "label": "Youtube" },
+            { "value": "tiktok", "label": "Tiktok" }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "social_url",
+          "label": "Social URL"
+        },
+        {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "row_break",
+      "name": "Row Break",
+      "settings": []
+    }
+  ],
+  "presets": [{ "name": "Team Card" }]
+}
+
+{% endschema %}

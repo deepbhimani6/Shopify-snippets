@@ -1,0 +1,11 @@
+      {% if paginate.pages > 1 %}
+      <nav class="pagination">
+      {% if paginate.previous %}
+        <a href="{{ paginate.previous.url }}" class="prev">Previous</a>
+      {% endif %}
+      <span class="page-number">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+      {% if paginate.next %}
+        <a href="{{ paginate.next.url }}" class="next">Next</a>
+      {% endif %}
+      </nav>
+      {% endif %}

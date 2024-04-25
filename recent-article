@@ -1,0 +1,11 @@
+{% assign blog = blogs['your-blog-handle'] %}
+{% assign recent_posts = blog.articles | limit:5 %}
+
+{% if recent_posts.size > 0 %}
+  <h2>Recent Articles</h2>
+  <ul>
+    {% for article in recent_posts %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}

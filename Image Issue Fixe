@@ -1,0 +1,4 @@
+{% assign original_image_url = "https://ryggau.myshopify.com/cdn/shop/files/two-col-2.png?v=1710997375" %}
+{% assign image_url = original_image_url | replace: "_small", "" %}
+
+<img src="{{ image_url }}" alt="Your Image">
